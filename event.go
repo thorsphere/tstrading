@@ -27,7 +27,7 @@ type Event struct {
 	Previous *float64    `json:"previous"` // Pointer, because it can be nil if the value is not yet released
 	Unit     string      `json:"unit"`     // Unit of measurement for the values, e.g., "%", "K", "M", "B"
 	Impact   ImpactLevel `json:"impact"`   // Impact level of the event
-	Source   string      `json:"source"`   // Source of the data, e.g., "Bloomberg", "Reuters", "Official Government Website"
+	Source   string      `json:"source"`   // Source of the data, e.g., "Official Government Website"
 }
 
 // Period represents a time period with a start and end date.
