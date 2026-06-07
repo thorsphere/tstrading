@@ -25,22 +25,28 @@ Represents a single economic calendar event.
 
 ```go
 type Event struct {
-    ID       int64       `json:"id"`
-    Name     string      `json:"name"`
-    Time     time.Time   `json:"time"`
-    Country  string      `json:"country"`
-    Actual   *float64    `json:"actual"`
-    Estimate *float64    `json:"estimate"`
-    Previous *float64    `json:"previous"`
-    Unit     string      `json:"unit"`
-    Impact   ImpactLevel `json:"impact"`
-    Source   string      `json:"source"`
+    ID          int64       `json:"id"`
+    Name        string      `json:"name"`
+    Time        time.Time   `json:"time"`
+    Country     string      `json:"country"`
+    Currency    *string     `json:"currency"`
+    Actual      *float64    `json:"actual"`
+    Estimate    *float64    `json:"estimate"`
+    Previous    *float64    `json:"previous"`
+    Unit        *string     `json:"unit"`
+    Precision   int         `json:"precision"`
+    Change      *float64    `json:"change"`
+    ChangePct   *float64    `json:"change_pct"`
+    Surprise    *float64    `json:"surprise"`
+    SurprisePct *float64    `json:"surprise_pct"`
+    Impact      ImpactLevel `json:"impact"`
+    Source      string      `json:"source"`
 }
 ```
 
 **Key methods:**
-- `String() string` – returns a formatted table string; handles nil receiver gracefully.
-- `NearEqual(other *Event) bool` – compares two events for near‑equality (excluding the `ID` field) using a configurable floating‑point tolerance.
+- `String() string` – returns a formatted table string; handles nil receiver gracefully. Rows with nil values are omitted.
+- `NearEqual(other *Event) bool` – compares two events for near‑equality (excluding the `ID` field). Float comparisons use a precision‑based tolerance (half of the smallest displayable unit). Pointer fields (`Unit`, `Currency`, float pointers) are compared nil‑safely.
 - `GenerateDocID() (string, error)` – produces a deterministic, URL‑safe document ID from `Time`, `Country`, and `Name` using SHA‑256.
 
 ### `Period`
@@ -77,7 +83,7 @@ const (
 
 - [`tstable`](https://github.com/thorsphere/tstable) – table formatting used by `Event.String()`
 - [`tserr`](https://github.com/thorsphere/tserr) – error and test helpers
-- [`lpstats`](https://github.com/thorsphere/lpstats) – float pointer comparison and formatting
+- [`lpstats`](https://github.com/thorsphere/lpstats) – float pointer comparison, formatting, and string pointer utilities
 
 ## License
 

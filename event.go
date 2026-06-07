@@ -1,19 +1,23 @@
+// Package tstrading provides domain types and data models for trading.
+// It focuses on economic calendar events, their impact levels, and time periods,
+// with support for formatting, comparison, and NoSQL document-ID generation.
+//
 // Copyright (c) 2026 thorsphere.
 // All Rights Reserved. Use is governed with GNU Affero General Public License v3.0
 // that can be found in the LICENSE file.
 package tstrading
 
-// Import standard library packages and lpstats for utility functions.
+// Import standard library packages, tserr, tstable, and lpstats for utility functions.
 import (
 	"crypto/sha256" // sha256 for hashing event details to generate a unique document ID for NoSQL databases
 	"encoding/hex"  // hex for encoding the hash output as a hexadecimal string
 	"fmt"           // fmt for string formatting
-	"math"
-	"strings"
-	"time" // time for handling event timestamps and periods
+	"math"          // math for mathematical functions
+	"strings"       // strings for string manipulation
+	"time"          // time for handling event timestamps and periods
 
 	"github.com/thorsphere/lpstats" // lpstats for utility functions to compare float pointers and format them as strings
-	"github.com/thorsphere/tserr"
+	"github.com/thorsphere/tserr"   // tserr for error and test helpers
 	"github.com/thorsphere/tstable" // tstable for formatting tables
 )
 
