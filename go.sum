@@ -1,7 +1,7 @@
-github.com/thorsphere/lpstats v1.4.2 h1:xGOWIrVEha7SiEm4DuvoLs0QeFp0QhA+FyalIeaOZLM=
-github.com/thorsphere/lpstats v1.4.2/go.mod h1:axn/hL7u+DW84x7dsExRceP6qb5y1l0aoemArrKBEuM=
-github.com/thorsphere/tserr v1.20.0 h1:msY56Tgn2HT79Gc3Uppz6/nATuTLfK7NXWj68qCUTuY=
-github.com/thorsphere/tserr v1.20.0/go.mod h1:779lF6yFY5MXuJFpRqdBoTYLJTrxXx8yiwEDAsRN1sI=
+github.com/thorsphere/lpstats v1.5.2 h1:4GANIrm/u4HKj1m0UhoUqEKDkW24KBngRb1k+2y/L9k=
+github.com/thorsphere/lpstats v1.5.2/go.mod h1:axn/hL7u+DW84x7dsExRceP6qb5y1l0aoemArrKBEuM=
+github.com/thorsphere/tserr v1.20.1 h1:DrtZWqBcMDryMuG5yHbJrnvrDuBocBLDftH8i3CAS5M=
+github.com/thorsphere/tserr v1.20.1/go.mod h1:779lF6yFY5MXuJFpRqdBoTYLJTrxXx8yiwEDAsRN1sI=
 github.com/thorsphere/tsfio v1.8.0 h1:KduF7Tqw1mJZ4LLcmXYNvo6iwijSEN2r33hWnN1O/KY=
 github.com/thorsphere/tsfio v1.8.0/go.mod h1:KM157WLnfi0ffkR6c4P5vSvovqcRgmqXRkcbwnYGzPw=
 github.com/thorsphere/tstable v1.1.2 h1:07S5VKO+ccxI5GbsxQBL2CzaRy+i7SXpkNpEngwfrAE=

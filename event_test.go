@@ -9,6 +9,7 @@ import (
 	"testing" // testing for writing test cases
 	"time"    // time for working with time and dates
 
+	"github.com/thorsphere/lpstats"
 	"github.com/thorsphere/tserr"     // tserr for custom error handling
 	"github.com/thorsphere/tsfio"     // tsfio for file input/output operations, including handling golden files
 	"github.com/thorsphere/tstrading" // tstrading for testing
@@ -17,41 +18,76 @@ import (
 var (
 	// Define some sample events for testing purposes
 	evNfp *tstrading.Event = &tstrading.Event{
-		Name:     "Non-Farm Payrolls",
-		Time:     time.Date(2024, 7, 5, 8, 30, 0, 0, time.UTC),
-		Country:  "US",
-		Actual:   new(200.0),
-		Estimate: new(180.0),
-		Previous: new(150.0),
-		Unit:     "K",
-		Impact:   tstrading.ImpactHigh,
-		Source:   "Bureau of Labor Statistics",
+		Name:        "Non-Farm Payrolls",
+		Time:        time.Date(2024, 7, 5, 8, 30, 0, 0, time.UTC),
+		Country:     "US",
+		Currency:    nil,
+		Actual:      lpstats.PtrFloat(200.0),
+		Estimate:    lpstats.PtrFloat(180.0),
+		Previous:    lpstats.PtrFloat(150.0),
+		Unit:        lpstats.PtrStr("K"),
+		Precision:   0,
+		Change:      lpstats.PtrFloat(50.0),
+		ChangePct:   lpstats.PtrFloat(33.3),
+		Surprise:    lpstats.PtrFloat(-20.0),
+		SurprisePct: lpstats.PtrFloat(-11.1),
+		Impact:      tstrading.ImpactHigh,
+		Source:      "Bureau of Labor Statistics",
+	}
+	evCc *tstrading.Event = &tstrading.Event{
+		Name:        "Consumer Credit",
+		Time:        time.Date(2026, 6, 5, 8, 30, 0, 0, time.UTC),
+		Country:     "US",
+		Currency:    lpstats.PtrStr("USD"),
+		Actual:      lpstats.PtrFloat(20.73),
+		Estimate:    lpstats.PtrFloat(17.80),
+		Previous:    lpstats.PtrFloat(22.23),
+		Unit:        lpstats.PtrStr("B"),
+		Precision:   2,
+		Change:      lpstats.PtrFloat(-1.5),
+		ChangePct:   lpstats.PtrFloat(-6.7),
+		Surprise:    lpstats.PtrFloat(-2.9),
+		SurprisePct: lpstats.PtrFloat(-16.3),
+		Impact:      tstrading.ImpactHigh,
+		Source:      "Bureau of Labor Statistics",
 	}
 	evGdp24 *tstrading.Event = &tstrading.Event{
-		Name:     "GDP Growth Rate",
-		Time:     time.Date(2024, 7, 10, 8, 30, 0, 0, time.UTC),
-		Country:  "US",
-		Actual:   new(3.5),
-		Estimate: new(3.0),
-		Previous: new(2.8),
-		Unit:     "%",
-		Impact:   tstrading.ImpactMedium,
-		Source:   "Bureau of Economic Analysis",
+		Name:        "GDP Growth Rate",
+		Time:        time.Date(2024, 7, 10, 8, 30, 0, 0, time.UTC),
+		Country:     "US",
+		Currency:    nil,
+		Actual:      lpstats.PtrFloat(3.5),
+		Estimate:    lpstats.PtrFloat(3.0),
+		Previous:    lpstats.PtrFloat(2.8),
+		Unit:        lpstats.PtrStr("%"),
+		Precision:   1,
+		Change:      lpstats.PtrFloat(0.7),
+		ChangePct:   lpstats.PtrFloat(25.0),
+		Surprise:    lpstats.PtrFloat(-0.5),
+		SurprisePct: lpstats.PtrFloat(-16.7),
+		Impact:      tstrading.ImpactMedium,
+		Source:      "Bureau of Economic Analysis",
 	}
 	evGdp30 *tstrading.Event = &tstrading.Event{
-		Name:     "GDP Growth Rate",
-		Time:     time.Date(2030, 7, 10, 8, 30, 0, 0, time.UTC),
-		Country:  "US",
-		Actual:   nil,
-		Estimate: nil,
-		Previous: nil,
-		Unit:     "%",
-		Impact:   tstrading.ImpactLow,
-		Source:   "Bureau of Economic Analysis",
+		Name:        "GDP Growth Rate",
+		Time:        time.Date(2030, 7, 10, 8, 30, 0, 0, time.UTC),
+		Country:     "US",
+		Actual:      nil,
+		Estimate:    nil,
+		Previous:    nil,
+		Unit:        lpstats.PtrStr("%"),
+		Precision:   1,
+		Change:      nil,
+		ChangePct:   nil,
+		Surprise:    nil,
+		SurprisePct: nil,
+		Impact:      tstrading.ImpactLow,
+		Source:      "Bureau of Economic Analysis",
 	}
 	// Define a slice of events for testing purposes
 	evs []*tstrading.Event = []*tstrading.Event{
 		evNfp,
+		evCc,
 		evGdp24,
 		evGdp30,
 	}
@@ -107,23 +143,28 @@ func TestNearEqual(t *testing.T) {
 	// Define a sample event for testing purposes
 	ev1 := evNfp
 	ev2 := &tstrading.Event{
-		Name:     ev1.Name,
-		Time:     ev1.Time,
-		Country:  ev1.Country,
-		Actual:   new(*(ev1.Actual)),
-		Estimate: new(*(ev1.Estimate)),
-		Previous: new(*(ev1.Previous)),
-		Unit:     ev1.Unit,
-		Impact:   ev1.Impact,
-		Source:   ev1.Source,
+		Name:        ev1.Name,
+		Time:        ev1.Time,
+		Country:     ev1.Country,
+		Currency:    lpstats.CopyStrPtr(ev1.Currency),
+		Actual:      lpstats.CopyFloatPtr(ev1.Actual),
+		Estimate:    lpstats.CopyFloatPtr(ev1.Estimate),
+		Previous:    lpstats.CopyFloatPtr(ev1.Previous),
+		Unit:        lpstats.CopyStrPtr(ev1.Unit),
+		Precision:   ev1.Precision,
+		Change:      lpstats.CopyFloatPtr(ev1.Change),
+		ChangePct:   lpstats.CopyFloatPtr(ev1.ChangePct),
+		Surprise:    lpstats.CopyFloatPtr(ev1.Surprise),
+		SurprisePct: lpstats.CopyFloatPtr(ev1.SurprisePct),
+		Impact:      ev1.Impact,
+		Source:      ev1.Source,
 	}
 	// Check if the events are nearly equal
 	if !ev1.NearEqual(ev2) {
 		t.Fatal(tserr.Equal(&tserr.EqualArgs{X: ev1.String(), Y: ev2.String()}))
 	}
 	// Modify the actual value of the second event
-	act := *(ev2.Actual) + 0.1
-	ev2.Actual = &act
+	ev2.Actual = lpstats.PtrFloat(*(ev2.Actual) + 1)
 	// Check if the events are not nearly equal
 	if ev1.NearEqual(ev2) {
 		t.Fatal(tserr.NotEqual(&tserr.NotEqualArgs{X: ev1.String(), Y: ev2.String()}))
