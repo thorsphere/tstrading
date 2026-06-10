@@ -8,9 +8,10 @@ type ImpactLevel int
 
 // Define constants for the different impact levels.
 const (
-	ImpactLow    ImpactLevel = iota // iota starts at 0, so ImpactLow = 0
-	ImpactMedium                    // ImpactMedium = 1
-	ImpactHigh                      // ImpactHigh = 2
+	ImpactUnknown ImpactLevel = iota // iota starts at 0, so ImpactUnknown = 0
+	ImpactLow                        // ImpactLow = 1
+	ImpactMedium                     // ImpactMedium = 2
+	ImpactHigh                       // ImpactHigh = 3
 )
 
 // String returns a string representation of the ImpactLevel.

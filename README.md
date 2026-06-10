@@ -65,19 +65,25 @@ type Period struct {
 
 ### `ImpactLevel`
 
-An integer‑based enum representing the expected market impact of an event.
+An integer‑based enum representing the expected market impact of an economic event.
 
 ```go
 type ImpactLevel int
 
 const (
-    ImpactLow    ImpactLevel = iota
-    ImpactMedium
-    ImpactHigh
+    ImpactUnknown ImpactLevel = iota // default zero value – used when impact is not set or unrecognised
+    ImpactLow                        // 1
+    ImpactMedium                     // 2
+    ImpactHigh                       // 3
 )
 ```
 
-`ImpactLevel` implements the `fmt.Stringer` interface, returning `"low"`, `"medium"`, `"high"`, or `"unknown"` for any invalid value.
+`ImpactLevel` implements the `fmt.Stringer` interface:
+
+- `ImpactLow` → `"low"`
+- `ImpactMedium` → `"medium"`
+- `ImpactHigh` → `"high"`
+- `ImpactUnknown` (or any invalid value) → `"unknown"`
 
 ## Dependencies
 
