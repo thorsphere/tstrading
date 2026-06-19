@@ -27,6 +27,7 @@ Represents a single economic calendar event.
 type Event struct {
     ID          int64       `json:"id"`
     Name        string      `json:"name"`
+    Description string      `json:"description"`
     Time        time.Time   `json:"time"`
     Country     string      `json:"country"`
     Currency    *string     `json:"currency"`
