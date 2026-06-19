@@ -1,57 +1,75 @@
-  ┌─────────────────┬──────────────────────────────┐
-  │  Event          │  Non-Farm Payrolls           │
-  ├─────────────────┼──────────────────────────────┤
-  │  Country        │  US                          │
-  │  Time           │  2024-07-05T08:30:00Z        │
-  │  Impact         │  high                        │
-  │  Actual         │  200K                        │
-  │  Estimate       │  180K                        │
-  │  Previous       │  150K                        │
-  │  Surprise       │  -20K                        │
-  │  Surprise in %  │  -11.1%                      │
-  │  Change         │  50K                         │
-  │  Change in %    │  33.3%                       │
-  │  Source         │  Bureau of Labor Statistics  │
-  └─────────────────┴──────────────────────────────┘
+  ┌─────────────────┬──────────────────────────────────┐
+  │  Event          │  Non-Farm Payrolls               │
+  ├─────────────────┼──────────────────────────────────┤
+  │  Country        │  US                              │
+  │  Time           │  2024-07-05T08:30:00Z            │
+  │  Impact         │  high                            │
+  │  Actual         │  200K                            │
+  │  Estimate       │  180K                            │
+  │  Previous       │  150K                            │
+  │  Surprise       │  -20K                            │
+  │  Surprise in %  │  -11.1%                          │
+  │  Change         │  50K                             │
+  │  Change in %    │  33.3%                           │
+  │  Description    │  The non-farm payrolls are the   │
+  │                 │  non-farm payrolls.              │
+  │  Source         │  Bureau of Labor Statistics      │
+  └─────────────────┴──────────────────────────────────┘
 
-  ┌─────────────────┬──────────────────────────────┐
-  │  Event          │  Consumer Credit             │
-  ├─────────────────┼──────────────────────────────┤
-  │  Country        │  US                          │
-  │  Time           │  2026-06-05T08:30:00Z        │
-  │  Impact         │  high                        │
-  │  Actual         │  USD 20.73B                  │
-  │  Estimate       │  USD 17.80B                  │
-  │  Previous       │  USD 22.23B                  │
-  │  Surprise       │  USD -2.90B                  │
-  │  Surprise in %  │  -16.3%                      │
-  │  Change         │  USD -1.50B                  │
-  │  Change in %    │  -6.7%                       │
-  │  Source         │  Bureau of Labor Statistics  │
-  └─────────────────┴──────────────────────────────┘
+  ┌─────────────────┬──────────────────────────────────┐
+  │  Event          │  Consumer Credit                 │
+  ├─────────────────┼──────────────────────────────────┤
+  │  Country        │  US                              │
+  │  Time           │  2026-06-05T08:30:00Z            │
+  │  Impact         │  high                            │
+  │  Actual         │  USD 20.73B                      │
+  │  Estimate       │  USD 17.80B                      │
+  │  Previous       │  USD 22.23B                      │
+  │  Surprise       │  USD -2.90B                      │
+  │  Surprise in %  │  -16.3%                          │
+  │  Change         │  USD -1.50B                      │
+  │  Change in %    │  -6.7%                           │
+  │  Description    │  The Consumer Credit report      │
+  │                 │  measures the change in the      │
+  │                 │  total amount of outstanding     │
+  │                 │  consumer credit, including      │
+  │                 │  credit cards, auto loans, and   │
+  │                 │  personal loans, but excluding   │
+  │                 │  mortgages. A positive reading   │
+  │                 │  indicates increased consumer    │
+  │                 │  borrowing, while a negative     │
+  │                 │  reading indicates a decrease.   │
+  │  Source         │  Bureau of Labor Statistics      │
+  └─────────────────┴──────────────────────────────────┘
 
-  ┌─────────────────┬───────────────────────────────┐
-  │  Event          │  GDP Growth Rate              │
-  ├─────────────────┼───────────────────────────────┤
-  │  Country        │  US                           │
-  │  Time           │  2024-07-10T08:30:00Z         │
-  │  Impact         │  medium                       │
-  │  Actual         │  3.5%                         │
-  │  Estimate       │  3.0%                         │
-  │  Previous       │  2.8%                         │
-  │  Surprise       │  -0.5%                        │
-  │  Surprise in %  │  -16.7%                       │
-  │  Change         │  0.7%                         │
-  │  Change in %    │  25.0%                        │
-  │  Source         │  Bureau of Economic Analysis  │
-  └─────────────────┴───────────────────────────────┘
+  ┌─────────────────┬──────────────────────────────────┐
+  │  Event          │  GDP Growth Rate                 │
+  ├─────────────────┼──────────────────────────────────┤
+  │  Country        │  US                              │
+  │  Time           │  2024-07-10T08:30:00Z            │
+  │  Impact         │  medium                          │
+  │  Actual         │  3.5%                            │
+  │  Estimate       │  3.0%                            │
+  │  Previous       │  2.8%                            │
+  │  Surprise       │  -0.5%                           │
+  │  Surprise in %  │  -16.7%                          │
+  │  Change         │  0.7%                            │
+  │  Change in %    │  25.0%                           │
+  │  Description    │  The GDP growth rate is the      │
+  │                 │  annual percentage change in     │
+  │                 │  gross domestic product (GDP).   │
+  │  Source         │  Bureau of Economic Analysis     │
+  └─────────────────┴──────────────────────────────────┘
 
-  ┌───────────┬───────────────────────────────┐
-  │  Event    │  GDP Growth Rate              │
-  ├───────────┼───────────────────────────────┤
-  │  Country  │  US                           │
-  │  Time     │  2030-07-10T08:30:00Z         │
-  │  Impact   │  low                          │
-  │  Source   │  Bureau of Economic Analysis  │
-  └───────────┴───────────────────────────────┘
+  ┌───────────────┬──────────────────────────────────┐
+  │  Event        │  GDP Growth Rate                 │
+  ├───────────────┼──────────────────────────────────┤
+  │  Country      │  US                              │
+  │  Time         │  2030-07-10T08:30:00Z            │
+  │  Impact       │  low                             │
+  │  Description  │  The GDP growth rate is the      │
+  │               │  annual percentage change in     │
+  │               │  gross domestic product (GDP).   │
+  │  Source       │  Bureau of Economic Analysis     │
+  └───────────────┴──────────────────────────────────┘
 

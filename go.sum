@@ -4,5 +4,5 @@ github.com/thorsphere/tserr v1.20.1 h1:DrtZWqBcMDryMuG5yHbJrnvrDuBocBLDftH8i3CAS
 github.com/thorsphere/tserr v1.20.1/go.mod h1:779lF6yFY5MXuJFpRqdBoTYLJTrxXx8yiwEDAsRN1sI=
 github.com/thorsphere/tsfio v1.8.0 h1:KduF7Tqw1mJZ4LLcmXYNvo6iwijSEN2r33hWnN1O/KY=
 github.com/thorsphere/tsfio v1.8.0/go.mod h1:KM157WLnfi0ffkR6c4P5vSvovqcRgmqXRkcbwnYGzPw=
-github.com/thorsphere/tstable v1.1.2 h1:07S5VKO+ccxI5GbsxQBL2CzaRy+i7SXpkNpEngwfrAE=
-github.com/thorsphere/tstable v1.1.2/go.mod h1:TjVOHYvJ+6Ru/yVM25OX9D3Xf+aDCMBMBo8s151T7Lo=
+github.com/thorsphere/tstable v1.2.0 h1:LpNd6OrjrTO1qEybPOE0ZtKZgpadl0ttVbDLO/aVaZ4=
+github.com/thorsphere/tstable v1.2.0/go.mod h1:4emAIb+xD100F2bjwDnU3uexxWzPnW+cYFzgf81GQDA=

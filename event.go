@@ -26,6 +26,7 @@ import (
 type Event struct {
 	ID          int64       `json:"id"`           // Unique identifier for the event, e.g., a database primary key or a UUID. It is expected to be set by the database.
 	Name        string      `json:"name"`         // Name of the economic event, e.g., "Non-Farm Payrolls", "GDP Growth Rate"
+	Description string      `json:"description"`  // Description of the economic event, e.g., "GDP growth rate is the annual percentage change in gross domestic product (GDP)."
 	Time        time.Time   `json:"time"`         // Date and time of the event in UTC, when the data is released or expected to be released
 	Country     string      `json:"country"`      // ISO 3166-1 alpha-2 two-letter country code
 	Currency    *string     `json:"currency"`     // Currency of the values, e.g., "USD", "EUR", "JPY". Pointer because it can be nil if the value is not yet released
@@ -128,7 +129,10 @@ func (ev *Event) String() string {
 	addRowIfVal(tbl, "Surprise in %", ev.SurprisePct, ev.fmtPct)
 	addRowIfVal(tbl, "Change", ev.Change, ev.fmtVal)
 	addRowIfVal(tbl, "Change in %", ev.ChangePct, ev.fmtPct)
+	tbl.AddRow([]string{"Description", ev.Description})
 	tbl.AddRow([]string{"Source", ev.Source})
+	tbl.SetMultiline(ev.Name)
+	tbl.SetMultilineWidth(30)
 	// Return the formatted table as a string
 	return tbl.String()
 }
@@ -158,6 +162,7 @@ func (ev *Event) NearEqual(other *Event) bool {
 	return ev.Name == other.Name &&
 		ev.Time.Equal(other.Time) &&
 		ev.Country == other.Country &&
+		ev.Description == other.Description &&
 		lpstats.NearEqualFloatPtr(ev.Actual, other.Actual, tolerance) &&
 		lpstats.NearEqualFloatPtr(ev.Estimate, other.Estimate, tolerance) &&
 		lpstats.NearEqualFloatPtr(ev.Previous, other.Previous, tolerance) &&
