@@ -24,7 +24,8 @@ import (
 // Event represents a single calendar event with its details.
 // Thought: Implement a definition for country codes, currency codes, and units of measurement and use it here for better type safety and validation.
 type Event struct {
-	ID          int64       `json:"id"`           // Unique identifier for the event, e.g., a database primary key or a UUID. It is expected to be set by the database.
+	ID          int64       `json:"id"`           // Unique identifier for the event. It is expected to be set by the database.
+	ExternalUID string      `json:"external_uid"` // External unique identifier for the event.
 	Name        string      `json:"name"`         // Name of the economic event, e.g., "Non-Farm Payrolls", "GDP Growth Rate"
 	Description string      `json:"description"`  // Description of the economic event, e.g., "GDP growth rate is the annual percentage change in gross domestic product (GDP)."
 	Time        time.Time   `json:"time"`         // Date and time of the event in UTC, when the data is released or expected to be released
@@ -180,11 +181,20 @@ func (ev *Event) NearEqual(other *Event) bool {
 // GenerateDocID creates a deterministic, safe, unique document ID for NoSQL databases (like Firestore)
 // based on the event's Time, Country, and Name.
 func (ev *Event) GenerateDocID() (string, error) {
+	// Check if the event is nil
 	if ev == nil {
+		// Return an error if the event is nil
 		return "", tserr.NilPtr()
 	}
-	// Concatenate the fields that make an event unique
-	key := fmt.Sprintf("%s|%s|%s", ev.Time.UTC().Format(time.RFC3339), ev.Country, ev.Name)
+	var key string
+	if ev.ExternalUID != "" {
+		// External UID is stable across reschedules — trust it as the identity
+		key = fmt.Sprintf("%s|%s", ev.ExternalUID, ev.Source)
+	} else {
+		// Fallback to the scheme for events without a source UID
+		// Concatenate the fields that make an event unique
+		key = fmt.Sprintf("%s|%s|%s", ev.Time.UTC().Format(time.RFC3339), ev.Country, ev.Name)
+	}
 	// Hash the string to ensure it is URL-safe and of predictable length
 	hash := sha256.Sum256([]byte(key))
 	// Encode the hash as a hexadecimal string to use as the document ID and nil to indicate success

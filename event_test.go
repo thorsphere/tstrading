@@ -9,7 +9,7 @@ import (
 	"testing" // testing for writing test cases
 	"time"    // time for working with time and dates
 
-	"github.com/thorsphere/lpstats"
+	"github.com/thorsphere/lpstats"   // lpstats for utility functions to compare float pointers and format them as strings
 	"github.com/thorsphere/tserr"     // tserr for custom error handling
 	"github.com/thorsphere/tsfio"     // tsfio for file input/output operations, including handling golden files
 	"github.com/thorsphere/tstrading" // tstrading for testing
@@ -54,6 +54,7 @@ var (
 		Source:      "Bureau of Labor Statistics",
 	}
 	evGdp24 *tstrading.Event = &tstrading.Event{
+		ExternalUID: "f837c66ceef0410edbde05566a64c540",
 		Name:        "GDP Growth Rate",
 		Description: "The GDP growth rate is the annual percentage change in gross domestic product (GDP).",
 		Time:        time.Date(2024, 7, 10, 8, 30, 0, 0, time.UTC),
@@ -72,6 +73,7 @@ var (
 		Source:      "Bureau of Economic Analysis",
 	}
 	evGdp30 *tstrading.Event = &tstrading.Event{
+		ExternalUID: "2e00e0fa979c906cf6d082a06a64c53e",
 		Name:        "GDP Growth Rate",
 		Description: "The GDP growth rate is the annual percentage change in gross domestic product (GDP).",
 		Time:        time.Date(2030, 7, 10, 8, 30, 0, 0, time.UTC),

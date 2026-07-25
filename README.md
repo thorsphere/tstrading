@@ -18,6 +18,7 @@ Represents a single economic calendar event.
 ```go
 type Event struct {
     ID          int64       `json:"id"`
+    ExternalUID string      `json:"external_uid"`
     Name        string      `json:"name"`
     Description string      `json:"description"`
     Time        time.Time   `json:"time"`
@@ -39,8 +40,8 @@ type Event struct {
 
 **Key methods:**
 - `String() string` – returns a formatted table string; handles nil receiver gracefully. Rows with nil values are omitted.
-- `NearEqual(other *Event) bool` – compares two events for near‑equality (excluding the `ID` field). Float comparisons use a precision‑based tolerance (half of the smallest displayable unit). Pointer fields (`Unit`, `Currency`, float pointers) are compared nil‑safely.
-- `GenerateDocID() (string, error)` – produces a deterministic, URL‑safe document ID from `Time`, `Country`, and `Name` using SHA‑256.
+- `NearEqual(other *Event) bool` – compares two events for near‑equality (excluding the `ID` and `ExternalUID` fields). Float comparisons use a precision‑based tolerance (half of the smallest displayable unit). Pointer fields (`Unit`, `Currency`, float pointers) are compared nil‑safely.
+- `GenerateDocID() (string, error)` – produces a deterministic, URL‑safe document ID using SHA‑256. When `ExternalUID` is set, the ID is derived from `ExternalUID|Source`, making it stable across event reschedules. Otherwise, it falls back to `Time|Country|Name`.
 
 ### `Period`
 
